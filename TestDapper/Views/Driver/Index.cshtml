@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TestDapper.Models.Driver>
+
+
+@{
+    ViewData["Title"] = "List of drivers";
+}
+
+<h1>List of drivers</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success btn-sm">Create a new</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DriverId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriverId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-controller="Car" asp-action="Edit" asp-route-carid="@item.DriverId" class="btn-outline-info btn-sm">Update</a> &emsp;
+                    <form asp-controller="Car" asp-action="Delete" asp-route-carid="@item.DriverId" onclick="confirm('Are you sure?')">
+                        <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

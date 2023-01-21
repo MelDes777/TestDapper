@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TestDapper.Models.Auto>
+
+
+@{
+    ViewData["Title"] = "List of cars";
+}
+
+<h1>List of cars</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success btn-sm">Create a new</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AutoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    <a asp-controller="Car" asp-action="Edit" asp-route-carid="@item.AutoId" class="btn-outline-info btn-sm">Update</a> &emsp;
+                    <form asp-controller="Car" asp-action="Delete" asp-route-carid="@item.AutoId" onclick="confirm('Are you sure?')">
+                        <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
