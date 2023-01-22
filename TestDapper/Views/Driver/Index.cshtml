@@ -14,10 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DriverId)
+                @Html.DisplayNameFor(model => model.id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.name)
             </th>
         </tr>
     </thead>
@@ -26,14 +26,14 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DriverId)
+                    @Html.DisplayFor(modelItem => item.id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.name)
                 </td>
                 <td>
-                    <a asp-controller="Car" asp-action="Edit" asp-route-carid="@item.DriverId" class="btn-outline-info btn-sm">Update</a> &emsp;
-                    <form asp-controller="Car" asp-action="Delete" asp-route-carid="@item.DriverId" onclick="confirm('Are you sure?')">
+                    <a asp-controller="Driver" asp-action="Edit" asp-route-id="@item.id" class="btn-outline-info btn-sm">Update</a> &emsp;
+                    <form asp-controller="Driver" asp-action="Delete" asp-route-id="@item.id" onclick="confirm('Are you sure?')">
                         <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </td>

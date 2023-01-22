@@ -1,22 +1,22 @@
 ﻿@model TestDapper.Models.Driver
 
 @{
-    ViewData["Title"] = "Edit" + Model.Name;
+    ViewData["Title"] = "Edit" + Model.name;
 }
 
-<h4 class="alert alert-secondary">Update @Model.Name</h4>
+<h4 class="alert alert-secondary">Update @Model.name</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input asp-for="DriverId" type="hidden" />
+                <input asp-for="id" type="hidden" />
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-outline-primary btn-sm" /> &emsp;

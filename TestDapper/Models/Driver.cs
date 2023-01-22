@@ -1,14 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
 
-namespace TestDapper.Models
+namespace TestDapper.Models;
+
+public class Driver
 {
-    public class Driver
-    {
 
-        public int DriverId { get; set; }
+    public int id { get; set; }
 
-        public int AutoId { get; set; }
+    public int auto_id { get; set; }
 
-        public string Name { get; set; }
-    }
+    public string name { get; set; }
 }

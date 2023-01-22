@@ -14,6 +14,55 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.model)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.model)
+                </td>
+                <td>
+                    <a asp-controller="Auto" asp-action="Edit" asp-route-id="@item.id" class="btn-outline-info btn-sm">Update</a> &emsp;
+                    <form asp-controller="Auto" asp-action="Delete" asp-route-id="@item.id" onclick="confirm(' Are you sure to delete @item.id? ') ">
+                        <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@model IEnumerable<Auto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-capilization text-center">List of Companies</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus"></i> Add New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
                 @Html.DisplayNameFor(model => model.AutoId)
             </th>
             <th>
@@ -22,6 +71,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Model)
             </th>
+            <th>Action(s)</th>
         </tr>
     </thead>
     <tbody>
@@ -38,12 +88,11 @@
                     @Html.DisplayFor(modelItem => item.Model)
                 </td>
                 <td>
-                    <a asp-controller="Car" asp-action="Edit" asp-route-carid="@item.AutoId" class="btn-outline-info btn-sm">Update</a> &emsp;
-                    <form asp-controller="Car" asp-action="Delete" asp-route-carid="@item.AutoId" onclick="confirm('Are you sure?')">
-                        <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
-                    </form>
+                    <a href="@Url.Action("Details",new { id=item.AutoId})" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
+                    <a href="@Url.Action("Edit",new { id=item.AutoId})" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="@Url.Action("Delete",new { id=item.AutoId})" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }
     </tbody>
-</table>
+</table>*@
