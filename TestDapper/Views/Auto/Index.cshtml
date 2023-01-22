@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     <a asp-controller="Auto" asp-action="Edit" asp-route-id="@item.Id" class="btn-outline-info btn-sm">Update</a> &emsp;
-                    <form asp-controller="Auto" asp-action="Delete" asp-route-id="@item.Id" onclick="confirm(' Are you sure to delete @item.Id? ') ">
+                    <form asp-controller="Auto" asp-action="Delete" asp-route-id="@item.Id" onclick="confirm(' Are you sure to delete? ') ">
                         <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </td>
@@ -63,7 +63,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AutoId)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Brand)
@@ -79,7 +79,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AutoId)
+                    @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Brand)
@@ -88,9 +88,9 @@
                     @Html.DisplayFor(modelItem => item.Model)
                 </td>
                 <td>
-                    <a href="@Url.Action("Details",new { id=item.AutoId})" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
-                    <a href="@Url.Action("Edit",new { id=item.AutoId})" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="@Url.Action("Delete",new { id=item.AutoId})" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    <a href="@Url.Action("Details",new { id=item.Id})" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye">Details</i></a>
+                    <a href="@Url.Action("Edit",new { id=item.Id})" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square">Edit</i></a>
+                    <a href="@Url.Action("Delete",new { id=item.Id})" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>Delete</a>
                 </td>
             </tr>
         }

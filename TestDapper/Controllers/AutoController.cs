@@ -176,16 +176,14 @@ namespace TestDapper.Controllers;
 //}
 #endregion
 
-#region New Controller (works)
+#region New Controller (almost works)
 public class AutoController : Controller
 {
     private readonly IAutoRepository _autoRepository;
-    private readonly IConfiguration _configuration;
 
-    public AutoController(IAutoRepository autoRepository, IConfiguration configuration)
+    public AutoController(IAutoRepository autoRepository)
     {
         this._autoRepository = autoRepository;
-        this._configuration = configuration;
     }
 
     [HttpGet]
