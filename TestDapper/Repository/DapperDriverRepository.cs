@@ -148,7 +148,7 @@ public class DapperDriverRepository : IDriverRepository
         var query = "INSERT INTO driver (name) VALUES (@name)";
 
         var parameters = new DynamicParameters();
-        parameters.Add("name", driver.name, DbType.String);
+        parameters.Add("name", driver.Name, DbType.String);
 
         using (var connection = _context.CreateConnection())
         {
@@ -160,7 +160,7 @@ public class DapperDriverRepository : IDriverRepository
     {
         var query = "INSERT INTO driver (name) VALUES (@name WHERE id = @id)";
         var parameters = new DynamicParameters();
-        parameters.Add("name", driver.name, DbType.String);
+        parameters.Add("name", driver.Name, DbType.String);
 
         using (var connection = _context.CreateConnection())
         {

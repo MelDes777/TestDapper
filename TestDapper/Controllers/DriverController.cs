@@ -71,7 +71,7 @@ public class DriverController : Controller
     [HttpPost]
     public IActionResult Edit(int id, Driver driver)
     {
-        if (id != driver.id)
+        if (id != driver.Id)
         {
             return NotFound();
         }

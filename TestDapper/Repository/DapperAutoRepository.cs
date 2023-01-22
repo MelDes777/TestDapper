@@ -148,8 +148,8 @@ public class DapperAutoRepository : IAutoRepository
         var query = "INSERT INTO auto (brand, model) VALUES (@brand, @model)";
 
         var parameters = new DynamicParameters();
-        parameters.Add("brand", auto.brand, DbType.String);
-        parameters.Add("model", auto.model, DbType.String);
+        parameters.Add("brand", auto.Brand, DbType.String);
+        parameters.Add("model", auto.Model, DbType.String);
 
         using (var connection = _context.CreateConnection())
         {
@@ -161,8 +161,8 @@ public class DapperAutoRepository : IAutoRepository
     {
         var query = "INSERT INTO auto (brand, model) VALUES (@brand, @model WHERE id = @id)";
         var parameters = new DynamicParameters();
-        parameters.Add("brand", auto.brand, DbType.String);
-        parameters.Add("model", auto.model, DbType.String);
+        parameters.Add("brand", auto.Brand, DbType.String);
+        parameters.Add("model", auto.Model, DbType.String);
 
         using (var connection = _context.CreateConnection())
         {

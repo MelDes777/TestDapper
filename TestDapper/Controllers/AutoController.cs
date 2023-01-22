@@ -75,7 +75,7 @@ public class AutoController : Controller
     [HttpPost]
     public IActionResult Edit(int id, Auto auto)
     {
-        if (id != auto.id)
+        if (id != auto.Id)
         {
             return NotFound();
         }

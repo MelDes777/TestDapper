@@ -14,13 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.id)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.brand)
+                @Html.DisplayNameFor(model => model.Brand)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.model)
+                @Html.DisplayNameFor(model => model.Model)
             </th>
         </tr>
     </thead>
@@ -29,17 +29,17 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.id)
+                    @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.brand)
+                    @Html.DisplayFor(modelItem => item.Brand)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.model)
+                    @Html.DisplayFor(modelItem => item.Model)
                 </td>
                 <td>
-                    <a asp-controller="Auto" asp-action="Edit" asp-route-id="@item.id" class="btn-outline-info btn-sm">Update</a> &emsp;
-                    <form asp-controller="Auto" asp-action="Delete" asp-route-id="@item.id" onclick="confirm(' Are you sure to delete @item.id? ') ">
+                    <a asp-controller="Auto" asp-action="Edit" asp-route-id="@item.Id" class="btn-outline-info btn-sm">Update</a> &emsp;
+                    <form asp-controller="Auto" asp-action="Delete" asp-route-id="@item.Id" onclick="confirm(' Are you sure to delete @item.Id? ') ">
                         <button type="submit" class="btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </td>
