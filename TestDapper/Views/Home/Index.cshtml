@@ -23,7 +23,6 @@
                 <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
 
                 <!-- Dropdown Structure -->
-                <select>
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="#!">one</a></li>
                     <li><a href="#!">two</a></li>
@@ -32,7 +31,6 @@
                     <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                     <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                 </ul>
-                </select>
             </div>
             <br><br>
 
@@ -72,15 +70,14 @@
     </div>
 
     <!--  Scripts-->
-    <script></script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
+    <script>$('.dropdown-trigger').dropdown();</script>
 </body>
 </html>
