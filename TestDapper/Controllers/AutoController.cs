@@ -8,7 +8,7 @@ namespace TestDapper.Controllers;
 //public class AutoController : Controller
 //{
 
-//    const string connectionString = "User ID=postgres;Password=x569Gm471PSXZ;Host=localhost;Port=5432;Database=testbase;";
+//    const string connectionString = "User ID=postgres;Password=admin!@#;Host=localhost;Port=5432;Database=testbase;";
 //    public IActionResult Index()
 //    {
 //        IDbConnection connection;
@@ -176,7 +176,7 @@ namespace TestDapper.Controllers;
 //}
 #endregion
 
-#region New Controller (almost works)
+#region New Controller (works)
 public class AutoController : Controller
 {
     private readonly IAutoRepository _autoRepository;
@@ -205,14 +205,6 @@ public class AutoController : Controller
     }
 
     [HttpGet]
-    // GET: AutoController/Details/5
-    public async Task<ActionResult> Details(int id)
-    {
-        var car = await _autoRepository.GetCar(id);
-        return View(car);
-    }
-
-    [HttpGet]
     // GET: AutoController/Create
     public ActionResult Create()
     {
@@ -235,14 +227,15 @@ public class AutoController : Controller
 
     [HttpGet]
     // GET: AutoController/Edit/5
-    public ActionResult Edit(int? id)
+    public async Task<ActionResult> Edit(int? id)
     {
         if (id == null)
         {
           return NotFound();
         }
-        
-        return View();
+
+        var car = await _autoRepository.GetCar(id);
+        return View(car);
     }
 
     // POST: AutoController/Edit/5

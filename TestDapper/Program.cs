@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
 builder.Services.AddSingleton<DapperContext>();
-builder.Services.AddScoped<IAutoRepository, DapperAutoRepository>();
-builder.Services.AddScoped<IDriverRepository, DapperDriverRepository>();
+builder.Services.AddScoped<IAutoRepository, AutoRepository>();
+builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 
 var app = builder.Build();
 

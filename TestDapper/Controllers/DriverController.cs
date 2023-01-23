@@ -9,7 +9,7 @@ namespace TestDapper.Controllers;
 //public class DriverController : Controller
 //{
 
-//    const string connectionString = "User ID=postgres;Password=x569Gm471PSXZ;Host=localhost;Port=5432;Database=testbase;";
+//    const string connectionString = "User ID=postgres;Password=admin!@#;Host=localhost;Port=5432;Database=testbase;";
 //    public IActionResult Index()
 //    {
 //        IDbConnection connection;
@@ -172,16 +172,14 @@ namespace TestDapper.Controllers;
 
 #endregion
 
-#region New controller (almost works)
+#region New controller (works)
 public class DriverController : Controller
 {
     private readonly IDriverRepository _driverRepository;
-    private readonly IConfiguration _configuration;
 
-    public DriverController(IDriverRepository driverRepository, IConfiguration configuration)
+    public DriverController(IDriverRepository driverRepository)
     {
         this._driverRepository = driverRepository;
-        this._configuration = configuration;
     }
 
     [HttpGet]
@@ -200,14 +198,6 @@ public class DriverController : Controller
         }
 
 
-    }
-
-    [HttpGet]
-    // GET: DriverController/Details/5
-    public async Task<ActionResult> Details(int id)
-    {
-        var drivers = await _driverRepository.GetDriver(id);
-        return View(drivers);
     }
 
     [HttpGet]
@@ -234,14 +224,16 @@ public class DriverController : Controller
 
     [HttpGet]
     // GET: DriverController/Edit/5
-    public ActionResult Edit(int? id)
+    public async Task<ActionResult> Edit(int? id)
     {
+
         if (id == null)
         {
             return NotFound();
         }
 
-        return View();
+        var driver = await _driverRepository.GetDriver(id);
+        return View(driver);
     }
 
     // POST: DriverController/Edit/5

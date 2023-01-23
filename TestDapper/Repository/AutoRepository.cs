@@ -3,14 +3,14 @@ using TestDapper.Models;
 
 namespace TestDapper.Repository;
 
-#region AdditionalDbOperations Driver
-//public class DapperDriverAdditionalDbOperations : IAdditionalDbOperations
+#region AdditionalDbOperations Auto
+//public class DapperAutoAdditionalDbOperations : IAdditionalDbOperations
 //{
 
-//    private const string TABLE_NAME = "driver";
+//    private const string TABLE_NAME = "auto";
 //    private readonly NpgsqlConnection connection;
 
-//    public DapperDriverAdditionalDbOperations()
+//    public DapperAutoAdditionalDbOperations()
 //    {
 //        connection = new NpgsqlConnection("AppContext");
 //        connection.Open();
@@ -21,8 +21,8 @@ namespace TestDapper.Repository;
 //        var sql = $"CREATE TABLE if not exists {TABLE_NAME}" +
 //                 $"(" +
 //                 $"id serial PRIMARY KEY, " +
-//                 $"name VARCHAR (200) NOT NULL, " +
-//                 $"auto_id BIGINT REFERENCES auto (id), " +
+//                 $"brand VARCHAR (200) NOT NULL, " +
+//                 $"model VARCHAR (200) NOT NULL, " +
 //                 $")";
 
 //        await connection.ExecuteAsync(sql);
@@ -38,34 +38,34 @@ namespace TestDapper.Repository;
 //}
 #endregion
 
-#region Old Version Driver
-//public class DapperDriverRepository : IDriverRepository
+#region Old Version Auto
+//public class DapperAutoRepository : IAutoRepository
 //{
 
-//    private const string TABLE_NAME = "driver";
+//    private const string TABLE_NAME = "auto";
 //    private readonly NpgsqlConnection connection;
 
-//    public DapperDriverRepository()
+//    public DapperAutoRepository()
 //    {
 //        connection = new NpgsqlConnection("AppContext");
 //        connection.Open();
 //    }
 
-//    public async Task AddDriver(Driver driver)
+//    public async Task AddCar(Auto auto)
 //    {
-//        string commandText = $"INSERT INTO {TABLE_NAME} (id, name, auto_id) VALUES (@id, @name, @auto_id)";
+//        string commandText = $"INSERT INTO {TABLE_NAME} (id, brand, model) VALUES (@id, @brand, @model)";
 
 //        var queryArguments = new
 //        {
-//            id = driver.DriverId,
-//            name = driver.Name,
-//            auto_id = driver.AutoId
+//            id = auto.AutoId,
+//            brand = auto.Brand,
+//            model = auto.Model
 //        };
 
 //        await connection.ExecuteAsync(commandText, queryArguments);
 //    }
 
-//    public async Task DeleteDriver(int id)
+//    public async Task DeleteCar(int id)
 //    {
 //        string commandText = $"DELETE FROM {TABLE_NAME} WHERE ID=(@p)";
 
@@ -77,32 +77,32 @@ namespace TestDapper.Repository;
 //        await connection.ExecuteAsync(commandText, queryArguments);
 //    }
 
-//    public async Task<Driver> GetDriver(int id)
+//    public async Task<Auto> GetCar(int? id)
 //    {
 //        string commandText = $"SELECT * FROM {TABLE_NAME} WHERE ID = @id";
 
 //        var queryArgs = new { Id = id };
-//        var driver = await connection.QueryFirstAsync<Driver>(commandText, queryArgs);
-//        return driver;
+//        var auto = await connection.QueryFirstAsync<Auto>(commandText, queryArgs);
+//        return auto;
 //    }
 
-//    public async Task<IEnumerable<Driver>> GetDrivers()
+//    public async Task<IEnumerable<Auto>> GetCars()
 //    {
 //        string commandText = $"SELECT * FROM {TABLE_NAME}";
-//        var driver = await connection.QueryAsync<Driver>(commandText);
+//        var auto = await connection.QueryAsync<Auto>(commandText);
 
-//        return driver;
+//        return auto;
 //    }
 
-//    public async Task UpdateDriver(int id, Driver driver)
+//    public async Task UpdateCar(int id, Auto auto)
 //    {
 //        var commandText = $@"UPDATE {TABLE_NAME}
-//                    SET name = @name WHERE id = @id";
+//                    SET brand = @brand WHERE id = @id";
 
 //        var queryArgs = new
 //        {
-//            id = driver.DriverId,
-//            name = driver.Name
+//            id = auto.AutoId,
+//            brand = auto.Brand
 //        };
 
 //        await connection.ExecuteAsync(commandText, queryArgs);
@@ -110,45 +110,46 @@ namespace TestDapper.Repository;
 //}
 #endregion
 
-public class DapperDriverRepository : IDriverRepository
+public class AutoRepository : IAutoRepository
 {
     private readonly DapperContext _context;
 
-    public DapperDriverRepository(DapperContext context)
+    public AutoRepository(DapperContext context)
     {
         this._context = context;
     }
 
-
-    public async Task<IEnumerable<Driver>> GetDrivers()
+    
+    public async Task<IEnumerable<Auto>> GetCars()
     {
-        var query = "SELECT * FROM driver";
+        var query = "SELECT * FROM auto";
 
         using (var connection = _context.CreateConnection())
         {
-            var drivers = await connection.QueryAsync<Driver>(query);
-            return drivers.ToList();
+            var cars = await connection.QueryAsync<Auto>(query);
+            return cars.ToList();
         }
     }
 
-
-    public async Task<Driver> GetDriver(int? id)
+    
+    public async Task<Auto> GetCar(int? id)
     {
         var query = "SELECT * FROM auto WHERE id = @id";
 
         using (var connection = _context.CreateConnection())
         {
-            var driver = await connection.QuerySingleOrDefaultAsync<Driver>(query, new { id });
-            return driver;
+            var car = await connection.QuerySingleOrDefaultAsync<Auto>(query, new { id });
+            return car;
         }
     }
 
-    public async Task CreateDriver(Driver driver)
+    public async Task CreateCar(Auto auto)
     {
-        var query = "INSERT INTO driver (name) VALUES (@name)";
+        var query = "INSERT INTO auto (brand, model) VALUES (@brand, @model)";
 
         var parameters = new DynamicParameters();
-        parameters.Add("name", driver.Name, DbType.String);
+        parameters.Add("brand", auto.Brand, DbType.String);
+        parameters.Add("model", auto.Model, DbType.String);
 
         using (var connection = _context.CreateConnection())
         {
@@ -156,21 +157,22 @@ public class DapperDriverRepository : IDriverRepository
         }
     }
 
-    public async Task UpdateDriver(int id, Driver driver)
+    public async Task UpdateCar(int id, Auto auto)
     {
-        var query = "INSERT INTO driver (name) VALUES (@name WHERE id = @id)";
+        var query = "INSERT INTO auto (brand, model) VALUES (@brand, @model WHERE id = @id)";
         var parameters = new DynamicParameters();
-        parameters.Add("name", driver.Name, DbType.String);
+        parameters.Add("brand", auto.Brand, DbType.String);
+        parameters.Add("model", auto.Model, DbType.String);
 
         using (var connection = _context.CreateConnection())
         {
             await connection.ExecuteAsync(query, parameters);
         }
     }
-    public async Task DeleteDriver(int id)
+    public async Task DeleteCar(int id)
     {
 
-        var query = "DELETE FROM driver WHERE id = @id";
+        var query = "DELETE FROM auto WHERE id = @id";
 
         using (var connection = _context.CreateConnection())
         {
@@ -178,4 +180,3 @@ public class DapperDriverRepository : IDriverRepository
         }
     }
 }
-
