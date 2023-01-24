@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,69 +11,90 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <style>
+        .card {
+            border-radius: 1em;
+            text-align: center;
+            padding: 1em;
+        }
+
+            .card:hover {
+                background-color: rgba(0, 0, 0, 0.1)
+            }
+
+            .card img {
+                border-radius: 50%;
+                width: 60%;
+                margin: auto;
+            }
+    </style>
 </head>
 <body>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
-            <h1 class="header center orange-text">Example</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Drivers and Cars</h5>
+    <div class="container text-center my-5">
+        <div class="row" row-cols-1 row-cols-md-2 row-cols-lg-3 g-5>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/id/111/800">
+                        <span class="card-title">Drivers</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Just check drivers
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a asp-area="" asp-controller="Driver" asp-action="Index" target="_blank" class="btn btn-primary">Check</a>
+                    </div>
+                </div>
             </div>
-            <div class="row center">
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
-
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                </ul>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/id/376/800">
+                        <span class="card-title">Cars</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Just check cars
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a asp-area="" asp-controller="Auto" asp-action="Index" target="_blank" class="btn btn-primary">Check</a>
+                    </div>
+                </div>
             </div>
-            <br><br>
-
         </div>
     </div>
 
-
+    @*<div class="section no-pad-bot" id="index-banner">
     <div class="container">
-        <div class="section">
-
-            <!--   Icon Section   -->
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                        <h5 class="center">Speeds up development</h5>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">User Experience Focused</h5>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center">Easy to work with</h5>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <br><br>
+    <br><br>
+    <h1 class="header center orange-text">Example</h1>
+    <div class="row center">
+    <h5 class="header col s12 light">Drivers and Cars</h5>
     </div>
+    <div class="row center">
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">three</a></li>
+    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+    </ul>
+    </div>
+    <br><br>
+
+    </div>
+    </div>*@
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
