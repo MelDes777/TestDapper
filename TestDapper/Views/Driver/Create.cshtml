@@ -17,10 +17,27 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-outline-success btn-sm" /> &emsp;
-                <a asp-action="index" class="btn btn-link btn-sm">Back</a>
-            </div>
         </form>
+    <select>
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Select</label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-outline-success btn-sm" /> &emsp;
+        <a asp-action="index" class="btn btn-link btn-sm">Back</a>
     </div>
 </div>
+
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+    </script>
+}
