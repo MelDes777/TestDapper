@@ -18,13 +18,13 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </form>
-    <select>
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-    </select>
-    <label>Materialize Select</label>
+        <select>
+            <option value="" disabled selected>Choose the car</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Select</label>
     </div>
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-outline-success btn-sm" /> &emsp;
@@ -40,4 +40,27 @@
             $('select').formSelect();
         });
     </script>
+
+    @*<script>
+        $(document).ready(function () {
+
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create")",
+                dataType: "json",
+                data: {name: "driver"},
+                succes: function(result){
+                    console.log(result);
+
+                },
+                error: function(req, status, error){
+                    console.log(status)
+                }
+            })
+
+
+        }
+
+    </script>*@
 }
