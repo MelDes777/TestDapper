@@ -177,5 +177,41 @@ public class DriverRepository : IDriverRepository
             await connection.ExecuteAsync(query, new { id });
         }
     }
+
+    public async Task<List<Driver>> GetDriversAutosMultipleMapping()
+    {
+        var query = "SELECT * FROM auto a JOIN driver d ON a.Id = d.auto_id";
+        using (var connection = _context.CreateConnection())
+        {
+            var driverDict = new Dictionary<int, Driver>();
+            var drivers = await connection.QueryAsync<Driver, Auto, Driver>(
+                query, (driver, auto) =>
+                {
+                    if (!driverDict.TryGetValue(driver.AutoId, out var currentDriver))
+                    {
+                        currentDriver = driver;
+                        driverDict.Add(currentDriver.Id, currentDriver);
+                    }
+                    currentDriver.Autos.Add(auto);
+                    return currentDriver;
+                }
+            );
+            return drivers.Distinct().ToList();
+        }
+    }
+
+    //public async Task<Driver> GetDriversAutosMultipleResults(int id)
+    //{
+    //    var query = "SELECT * FROM driver WHERE id = @id;" +
+    //                "SELECT * FROM auto WHERE auto_id = @id";
+    //    using (var connection = _context.CreateConnection())
+    //    using (var multi = await connection.QueryMultipleAsync(query, new { id }))
+    //    {
+    //        var driver = await multi.ReadSingleOrDefaultAsync<Driver>();
+    //        if (driver != null)
+    //            driver.Autos = (await multi.ReadAsync<Auto>()).ToList();
+    //        return driver;
+    //    }
+    //}
 }
 

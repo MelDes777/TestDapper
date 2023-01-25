@@ -13,6 +13,8 @@ namespace TestDapper.Repository
         Task UpdateCar(int id, Auto auto);
 
         Task DeleteCar(int id);
+
+        
     }
 
 }

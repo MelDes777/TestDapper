@@ -123,7 +123,7 @@ public class AutoRepository : IAutoRepository
     public async Task<IEnumerable<Auto>> GetCars()
     {
         var query = "SELECT * FROM auto";
-
+        
         using (var connection = _context.CreateConnection())
         {
             var cars = await connection.QueryAsync<Auto>(query);
@@ -179,4 +179,6 @@ public class AutoRepository : IAutoRepository
             await connection.ExecuteAsync(query, new { id });
         }
     }
+    
+
 }

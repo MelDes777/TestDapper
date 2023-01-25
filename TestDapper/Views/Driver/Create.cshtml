@@ -17,14 +17,17 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-        </form>
-        <select>
-            <option value="" disabled selected>Choose the car</option>
+        <div class="form-group">
+                @*<div class="col-11">
+                    <select id="lstCountryId" asp-for="AutoId" class="form-control" asp-items="ViewBag.Cars"
+                            onchange="FillCities(this, 'lstcity')"></select>
+                </div>*@
+                <select asp-for="AutoId">
+                    <option value="lstCountryId" disabled selected>Choose the car</option>
             <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
         </select>
-        <label>Materialize Select</label>
+        </div>
+        </form>
     </div>
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-outline-success btn-sm" /> &emsp;

@@ -13,6 +13,10 @@ namespace TestDapper.Repository
         Task UpdateDriver(int id, Driver driver);
 
         Task DeleteDriver(int id);
+
+        Task<List<Driver>> GetDriversAutosMultipleMapping();
+
+        //Task<Driver> GetDriversAutosMultipleResults(int id);
     }
    
 }

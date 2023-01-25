@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using TestDapper.DbContext;
 using TestDapper.Models;
@@ -200,6 +201,25 @@ public class DriverController : Controller
 
     }
 
+    //[HttpGet]
+    //public JsonResult GetDriversAutosMultipleResults(int id)
+    //{
+
+    //    var cars = _driverRepository.GetDriversAutosMultipleResults(id);
+    //    return Json(cars);
+
+    //}
+
+
+    [HttpGet]
+    public async Task<JsonResult> GetDriversAutosMultipleMappingAsync()
+    {
+        ViewBag.Cars = GetDriversAutosMultipleMappingAsync();
+        var cars = await _driverRepository.GetDriversAutosMultipleMapping();
+        return Json(cars);
+
+    }
+
     [HttpGet]
     // GET: DriverController/Create
     public ActionResult Create()
@@ -216,7 +236,7 @@ public class DriverController : Controller
         if (ModelState.IsValid)
         {
             await _driverRepository.CreateDriver(driver);
-            return RedirectToAction(nameof(Index)); 
+            return RedirectToAction(nameof(Index));
         }
 
         return View(driver);
